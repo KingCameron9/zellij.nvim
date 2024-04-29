@@ -1,4 +1,4 @@
-local keybindings = require('zellij.keybindings')
+local keybindings = require("zellij.keybindings")
 
 local zellij = {
     opts = {
@@ -6,7 +6,7 @@ local zellij = {
         replaceVimWindowNavigationKeybinds = false,
         vimTmuxNavigatorKeybinds = false,
         debug = false,
-    }
+    },
 }
 
 local directionTranslation = {
@@ -16,7 +16,7 @@ local directionTranslation = {
     l = "right",
 }
 local ACTION = "action"
-local MOVE_FOCUS_OR_TAB = "move-focus-or-tab"
+local MOVE_FOCUS_OR_TAB = "move-focus"
 local RENAME_PANE = "rename-pane"
 local RENAME_TAB = "rename-tab"
 local NEW_PANE = "new-pane"
@@ -43,7 +43,7 @@ function zellij.openDebugLog()
 end
 
 function zellij.version()
-    return zellij.ZellijCommand("--version", true):match"^%s*(.*)":match"(.-)%s*$"
+    return zellij.ZellijCommand("--version", true):match("^%s*(.*)"):match("(.-)%s*$")
 end
 
 function zellij.healthCheck()
@@ -119,7 +119,7 @@ function zellij.setup(opts)
     if opts.debug == true then
         print("Zellij plugin debug mode")
         local date = os.time(os.date("!*t"))
-        opts.logPath = '/tmp/zellij.nvim/log-' .. date .. '.txt'
+        opts.logPath = "/tmp/zellij.nvim/log-" .. date .. ".txt"
     end
     if opts.vimTmuxNavigatorKeybinds == true then
         keybindings.setupVimTmuxNavigatorBindings(opts.whichKeyEnabled)
